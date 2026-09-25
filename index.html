@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SynekFPS — Valorant Streamer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <button class="nav-toggle" id="navToggle" aria-label="Otwórz menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#stats">Statystyki</a>
+      <a href="#gear">Gear &amp; Ustawienia</a>
+      <a href="#sponsors">Dla sponsorów</a>
+      <a href="#support">Wsparcie</a>
+      <a href="#community">Społeczność</a>
+    </nav>
+
+    <a href="#home" class="brand">
+      <span class="brand-name">SYNEK<span class="brand-accent">FPS</span></span>
+      <span class="brand-avatar">
+        <img src="avatar.png" alt="Zdjęcie profilowe SynekFPS">
+        <span class="status-dot" id="brandStatusDot" title="offline"></span>
+      </span>
+    </a>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="Przełącz motyw">
+      <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="4"/><g stroke-width="2"><line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/><line x1="1" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="23" y2="12"/><line x1="4.2" y1="4.2" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.8" y2="19.8"/><line x1="4.2" y1="19.8" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.8" y2="4.2"/></g></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section id="home" class="hero">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="hero-kicker">Duelist main · Radiant grind</p>
+        <h1>Celuję w Radianta.<br>Ty celujesz razem ze mną.</h1>
+        <p class="hero-sub">Codzienny ranked, review VOD-ów i configi, które faktycznie działają. Sprawdź, czy jestem live, zanim zapytasz na czacie.</p>
+        <div class="hero-actions">
+          <a href="#gear" class="btn btn-primary">Zobacz mój setup</a>
+          <a href="#support" class="btn btn-ghost">Wesprzyj stream</a>
+        </div>
+      </div>
+
+      <div class="player-card">
+        <div class="player-topbar">
+          <span class="live-pill" id="livePill"><span class="live-dot"></span>SPRAWDZAM…</span>
+          <span class="player-channel">twitch.tv/synekfps</span>
+        </div>
+        <div class="player-frame" id="playerFrame">
+          <iframe
+            id="twitchEmbed"
+            src="https://player.twitch.tv/?channel=synekfps&parent=localhost&muted=true"
+            allowfullscreen>
+          </iframe>
+          <div class="offline-cover" id="offlineCover">
+            <img src="avatar.png" alt="SynekFPS offline">
+            <p>Offline — wróć w trakcie kolejnego streamu</p>
+            <span class="offline-sub">Powiadomienia na Discordzie i Twitterze/X</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats" class="section">
+    <div class="section-head">
+      <h2>Statystyki Valorant</h2>
+      <p class="section-note">(ostatnie 20 meczów) Dane z Riot API (HenrikDev / Tracker.gg) · <span id="statsUpdated">odświeżanie…</span></p>
+    </div>
+
+    <div class="stat-grid" id="statGrid">
+      <div class="stat-card stat-card--rank">
+        <span class="stat-label">Aktualna ranga</span>
+        <span class="stat-value" id="statRank">—</span>
+        <span class="stat-sub" id="statRR">— RR</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">K/D Ratio</span>
+        <span class="stat-value" id="statKD">—</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Headshot %</span>
+        <span class="stat-value" id="statHS">—</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Win Rate (20 gier)</span>
+        <span class="stat-value" id="statWR">—</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="gear" class="section section-alt">
+    <div class="section-head">
+      <h2>Mój sprzęt &amp; Ustawienia</h2>
+      <p class="section-note">Pytacie codziennie — więc wszystko jest tutaj, w jednym miejscu.</p>
+    </div>
+
+    <div class="gear-grid">
+
+      <div class="gear-card">
+        <h3>Crosshair code</h3>
+        <code class="crosshair-code" id="crosshairCode">0;P;u;000000FF;h;0;0l;3;0v;3;0o;0;0a;1;0f;0;1b;0</code>
+        <button class="btn btn-small" id="copyCrosshair">Kopiuj kod</button>
+        <p class="gear-hint" id="copyHint" aria-live="polite"></p>
+      </div>
+
+      <div class="gear-card">
+        <h3>Czułość &amp; eDPI</h3>
+        <div class="edpi-row">
+          <label>DPI
+            <input type="number" id="dpiInput" value="800" min="100" step="50" readonly>
+          </label>
+          <label>Sensitivity
+            <input type="number" id="sensInput" value="0.2" min="0.01" step="0.01" readonly>
+          </label>
+        </div>
+        <div class="edpi-result">eDPI: <strong id="edpiResult">280</strong></div>
+      </div>
+
+      <div class="gear-card">
+        <h3>Sprzęt</h3>
+        <ul class="gear-list">
+          <li><a href="https://www.logitechg.com/pl-pl/shop/p/pro-x2-superlight-wireless-mouse.910-006638" target="_blank" rel="noopener sponsored">Myszka — Logitech PRO X SUPERLIGHT 2</a></li>
+          <li><a href="#" target="_blank" rel="noopener sponsored">Podkładka — Artisan Type99 XXL Soft</a></li>
+          <li><a href="https://www.komputronik.pl/product/790233/benq-zowie-xl2566k.html" target="_blank" rel="noopener sponsored">Monitor — BenQ Zowie XL2566K</a></li>
+          <li><a href="https://wooting.io/wooting-80he" target="_blank" rel="noopener sponsored">Klawiatura — Wooting 80HE</a></li>
+          <li><a href="https://www.euro.com.pl/sluchawki-dla-graczy-pc/hyperx-cloud-iii-s-wireless-nauszne-bialy.bhtml" target="_blank" rel="noopener sponsored">Słuchawki — HyperX Cloud III</a></li>
+        </ul>
+        <p class="gear-hint">Linki nie sponsorowane. Kupując przez nie nie wesprzesz Synka.</p>
+      </div>
+
+      <div class="gear-card">
+        <h3>Ustawienia graficzne</h3>
+        <ul class="specs-list">
+          <li><span>Rozdzielczość</span><span>1920x1080 (16:9)</span></li>
+          <li><span>Material Quality</span><span>Low</span></li>
+          <li><span>Texture Quality</span><span>Low</span></li>
+          <li><span>Detail Quality</span><span>Low</span></li>
+          <li><span>UI Quality</span><span>Low</span></li>
+          <li><span>Vignette</span><span>Off</span></li>
+          <li><span>VSync</span><span>Off</span></li>
+          <li><span>Anti-Aliasing</span><span>None</span></li>
+          <li><span>Display Mode</span><span>Fullscreen</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="sponsors" class="section">
+    <div class="section-head">
+      <h2>Media Kit — dla marek i sponsorów</h2>
+      <p class="section-note">Współpracujesz ze streamem? Zacznij tutaj, nie od maila w opisie.</p>
+    </div>
+
+    <div class="mediakit-grid">
+      <div class="mediakit-stats">
+        <div class="mk-stat"><span class="mk-value">100</span><span class="mk-label">średni widzowie</span></div>
+        <div class="mk-stat"><span class="mk-value">10 100</span><span class="mk-label">obserwujących Twitch</span></div>
+        <div class="mk-stat"><span class="mk-value">2300</span><span class="mk-label">obserwujących TikTok</span></div>
+        <div class="mk-stat"><span class="mk-value">74% PL</span><span class="mk-label">widownia</span></div>
+      </div>
+
+      <form class="sponsor-form" id="sponsorForm">
+        <label>Firma / marka
+          <input type="text" name="company" required>
+        </label>
+        <label>Email kontaktowy
+          <input type="email" name="email" required>
+        </label>
+        <label>Typ współpracy
+          <select name="collab" required>
+            <option value="">Wybierz…</option>
+            <option value="sponsored-stream">Sponsorowany stream</option>
+            <option value="product-placement">Lokowanie produktu</option>
+            <option value="tournament">Udział w turnieju</option>
+            <option value="other">Inne</option>
+          </select>
+        </label>
+        <label>Wiadomość
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Wyślij zapytanie</button>
+        <p class="form-status" id="formStatus" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="support" class="section section-alt">
+    <div class="section-head">
+      <h2>Wsparcie </h2>
+    </div>
+    <div class="support-grid">
+      <a href="https://tipply.pl/@synekfps" target="_blank" rel="noopener" class="support-card support-card--tip">
+        <span class="support-title">Tipply</span>
+        <span class="support-desc">Wyślij donejta, który pojawi się na streamie na żywo.</span>
+      </a>
+      </a>
+      <a href="#" target="_blank" rel="noopener" class="support-card">
+        <span class="support-title">Subskrypcja Twitch</span>
+        <span class="support-desc">Emotki, brak reklam, dostęp do serwera VIP na Discordzie.</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="community" class="section community">
+    <div class="section-head">
+      <h2>Dołącz do społeczności</h2>
+    </div>
+    <div class="social-grid">
+      <a href="https://discord.com/invite/egVC3KVQzY" target="_blank" rel="noopener" class="social-card">Discord</a>
+      <a href="https://www.instagram.com/synekfps/" target="_blank" rel="noopener" class="social-card">Instagram</a>
+      <a href="https://www.youtube.com/@synekfps" target="_blank" rel="noopener" class="social-card">YouTube</a>
+      <a href="https://x.com/synekfps" target="_blank" rel="noopener" class="social-card">X (Twitter)</a>
+      <a href="https://www.tiktok.com/@synekfps" target="_blank" rel="noopener" class="social-card">TikTok</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>© <span id="year"></span> SynekFPS. Wszystkie znaki towarowe (Valorant, Riot Games) należą do ich właścicieli.</p>
+  <div>
+    <p id="made-by"><a href="https://kuuba-dev.netlify.app">Made by Kuuba</a></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
