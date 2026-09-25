@@ -220,3 +220,22 @@ sponsorForm.addEventListener('submit', (e) => {
   formStatus.textContent = `Dzięki, ${data.company}! Odpowiem w ciągu 48h na ${data.email}.`;
   sponsorForm.reset();
 });
+
+const backToTopBtn = document.getElementById('backToTopBtn');
+
+if (backToTopBtn) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add('is-visible');
+    } else {
+      backToTopBtn.classList.remove('is-visible');
+    }
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
