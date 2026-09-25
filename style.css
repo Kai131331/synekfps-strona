@@ -152,6 +152,7 @@ html[data-theme="light"] .icon-moon { display: none; }
 .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 4px; border-radius: 8px; }
 .nav-toggle span { width: 18px; height: 2px; background: var(--text); }
 
+/* ============ HERO ============ */
 .hero { max-width: 1180px; margin: 0 auto; padding: 64px 24px 80px; }
 
 .hero-grid {
@@ -212,6 +213,7 @@ html[data-theme="light"] .icon-moon { display: none; }
 }
 .btn-small:hover { border-color: var(--accent); color: var(--accent); }
 
+/* Player card */
 .player-card {
   background: var(--panel);
   border: 1px solid var(--border);
@@ -290,6 +292,7 @@ html[data-theme="light"] .icon-moon { display: none; }
   display: flex;
   flex-direction: column;
   gap: 6px;
+  /* Dodane animacje i efekty podświetlenia */
   transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1), border-color .3s ease, box-shadow .3s ease;
 }
 
@@ -340,6 +343,7 @@ html[data-theme="light"] .icon-moon { display: none; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 22px;
+  /* Dodane animacje i efekty podświetlenia */
   transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1), border-color .3s ease, box-shadow .3s ease;
 }
 
@@ -398,6 +402,7 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); ou
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 20px;
+  /* Dodane animacje i efekty podświetlenia */
   transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1), border-color .3s ease, box-shadow .3s ease;
 }
 .mk-stat:hover {
@@ -437,6 +442,7 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); ou
   display: flex;
   flex-direction: column;
   gap: 6px;
+  /* Dodane animacje i efekty podświetlenia */
   transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1), border-color .3s ease, box-shadow .3s ease;
 }
 .support-card:hover {
@@ -457,6 +463,7 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); ou
   border-radius: var(--radius);
   font-weight: 600;
   font-family: var(--font-display);
+  /* Dodane animacje i efekty podświetlenia */
   transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1), border-color .3s ease, color .3s ease, box-shadow .3s ease;
 }
 .social-card:hover {
@@ -512,5 +519,60 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); ou
 #made-by {
   font-size: large;
   color: red;
-  position: fixed; bottom: 15px; right: 30px;
+  position: fixed; bottom: 15px; left: 30px;
+}
+
+#title-radiant {
+  font-family: "Newsreader", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+h2 {
+  font-family: "Newsreader", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 99;
+  width: 46px;
+  height: 46px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  transition: opacity .3s ease, visibility .3s ease, transform .3s cubic-bezier(0.16, 1, 0.3, 1), border-color .3s ease, box-shadow .3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 10px 25px -5px rgba(255, 70, 85, 0.25), 0 0 10px rgba(255, 70, 85, 0.1);
+}
+
+@media (max-width: 600px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+  }
 }
